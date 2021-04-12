@@ -17,32 +17,30 @@ public class Engine {
     public double startingTime;
     BufferedImage beforeIntro, intro;
 
-    public Engine(){
+    public Engine() {
         try {
-            this.beforeIntro = ImageIO.read(new File("C:\\Users\\User\\IdeaProjects\\2D engine\\src\\black.jpg"));
-            this.intro = ImageIO.read(new File("C:\\Users\\User\\IdeaProjects\\2D engine\\src\\logoExample.jpg"));
+            this.beforeIntro = ImageIO.read(new File("src\\black.jpg"));
+            this.intro = ImageIO.read(new File("src\\logoExample.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Audio introSound = new Audio("C:\\Users\\User\\IdeaProjects\\2D engine\\src\\IntroSound.wav", 1);
+        Audio introSound = new Audio("src\\IntroSound.wav", 1);
         introSound.sound();
         startingTime = System.currentTimeMillis();
         planetaryEngine = new PlanetaryEngine();
     }
 
     public void updateAll(double timePast) {
-        if (timeStopped) {
-        } else {
+        if (!timeStopped)
             planetaryEngine.updateAll(timePast);
-        }
     }
 
-    public void introAnimation(Graphics g){
-        if (System.currentTimeMillis() - startingTime > 2300){
-            g.drawImage(beforeIntro,0,0,null);
-            g.drawImage(intro,19,200, null);
-        }else{
-            g.drawImage(beforeIntro,0,0,null);
+    public void introAnimation(Graphics g) {
+        if (System.currentTimeMillis() - startingTime > 2300) {
+            g.drawImage(beforeIntro, 0, 0, null);
+            g.drawImage(intro, 19, 200, null);
+        } else {
+            g.drawImage(beforeIntro, 0, 0, null);
         }
     }
 }
